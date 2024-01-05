@@ -16,7 +16,11 @@ provide('location', {
 </script>
 
 <template>
-  <router-view></router-view>
+  <div class="layout">
+    <router-view class="view left-slider" name="LeftSlider"></router-view>
+    <router-view class="view content"></router-view>
+    <router-view class="view right-slider" name="RightSlider"></router-view>
+  </div>
 </template>
 
 <style scoped>
@@ -53,5 +57,9 @@ provide('location', {
 
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.layout{
+  width: 100%;
+  display: flex;
 }
 </style>
