@@ -1,12 +1,22 @@
 <script setup lang="ts">
 
-import {onMounted, reactive, ref, watch, watchEffect} from "vue";
+
+interface Person{
+  name: string;
+  age: number
+}
+
+const personInfo = ref<Person>()
+
+
+import {onMounted, ref, watch, watchEffect} from "vue";
 import { useCountStore } from "../../store/index.ts"
 import CustomInput from "../components/CustomInput.vue";
 
 const countStore = useCountStore()
 const searchText = ref("默认字段")
 const msgRef = ref<any>(null)
+
 
 
 watch(searchText,(newVal) => {
