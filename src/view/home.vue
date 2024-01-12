@@ -1,21 +1,18 @@
 <script setup lang="ts">
 
 
-interface Person{
-  name: string;
-  age: number
-}
 
-const personInfo = ref<Person>()
 
 
 import {onMounted, ref, watch, watchEffect} from "vue";
 import { useCountStore } from "../../store/index.ts"
 import CustomInput from "../components/CustomInput.vue";
+import {useRouter} from "vue-router";
 
 const countStore = useCountStore()
 const searchText = ref("默认字段")
 const msgRef = ref<any>(null)
+const router = useRouter()
 
 
 
@@ -45,6 +42,10 @@ function clear(){
   })
 }
 
+function goAbout(){
+ router.go(-1)
+}
+
 </script>
 
 <template>
@@ -54,6 +55,7 @@ function clear(){
     <div>pinia:{{countStore.count}}</div>
     <button @click="increment">改变</button>
     <button @click="clear">清空</button>
+    <button @click="goAbout">编程式导航</button>
   <div class="router-box">
     <router-link to="/about">About</router-link>
     <router-link to="/user/1">User:1</router-link>

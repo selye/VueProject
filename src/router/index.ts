@@ -4,7 +4,7 @@ import User from "../view/user.vue";
 import LeftSlider from "../components/LeftSlider.vue"
 import RightSlider from "../components/RightSlider.vue"
 
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 const routes = [
     {
@@ -13,17 +13,29 @@ const routes = [
             default: Home,
             LeftSlider: LeftSlider,
             RightSlider: RightSlider
+        },
+        meta:{
+            requiresAuth: true,
+            title:"首页"
         }
     },
     {
         path:'/about',
         name:"about",
-        component: About
+        component: About,
+        meta:{
+            requiresAuth: true,
+            title:"关于"
+        }
     },
     {
         path: '/user/:id',
         name: 'user',
-        component: User
+        component: User,
+        meta:{
+            requiresAuth: true,
+            title:"用户"
+        }
     }
 ];
 
@@ -31,5 +43,11 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
+router.beforeResolve((to) => {
+    window.document.title = to.meta.title as string
+})
+
+
 
 export default router
