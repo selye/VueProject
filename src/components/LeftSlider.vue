@@ -2,7 +2,39 @@
 
 import {ref} from "vue";
 import UserLeft from "./UserLeft.vue";
-import OrderLeft from "./OrderLeft.vue"
+import OrderLeft from "./OrderLeft.vue";
+
+
+const promise1 = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(10)
+    })
+  })
+}
+
+const promise2 = () => {
+  return new Promise((resove)=>{
+    resove(2)
+  })
+}
+
+const promise3 = () => {
+  return new Promise((resove)=>{
+    resove(3)
+  })
+}
+
+const promiseArray = [promise1,promise2,promise3]
+async function getPromise(proArr:any) {
+  if(proArr.length > 0){
+    const firstPromise = proArr.shift();
+    await firstPromise().then(res => console.log(res));
+    await getPromise(proArr);
+  }
+}
+
+getPromise(promiseArray)
 
 const tabs = {
   user: UserLeft,
