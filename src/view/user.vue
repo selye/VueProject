@@ -1,20 +1,32 @@
 <script setup lang="ts">
-import {useRoute, useRouter} from "vue-router";
-import {onMounted} from "vue";
-const router = useRouter()
+import {useRoute} from "vue-router";
+import {inject, onMounted, watch} from "vue";
 const route = useRoute();
 const uId = route.params.id;
 
-console.log("route", route)
-console.log("router", router)
+const transfer = () => {
+
+}
 
 onMounted(() => {
   console.log("我挂载了")
 })
+
+const ll = inject<any>("location")
+
+watch(() => ll,() => {
+},{
+  deep: true,
+  immediate:true
+})
+
 </script>
 
 <template>
   <div>user:{{uId}}</div>
+  <div>{{ll.location}}</div>
+
+  <button @click="transfer">转移</button>
   <router-link to="/">Home</router-link>
 
 </template>

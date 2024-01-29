@@ -34,7 +34,7 @@ async function getPromise(proArr:any) {
   }
 }
 
-getPromise(promiseArray)
+// getPromise(promiseArray)
 
 const tabs = {
   user: UserLeft,

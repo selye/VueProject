@@ -1,17 +1,34 @@
 <script setup lang="ts">
 
-// import "./util/eventloop"
-import {provide, ref} from "vue";
+import "./util/eventloop";
+import {computed, onMounted, provide, reactive, ref} from "vue";
 
 const location = ref('North Pole');
 
 const updateLocation = () => {
-  location.value = 'Sorth Pole'
+  setTimeout(() => {
+    location.value = 'Sorth Pole'
+  },1500)
 }
+
+const emptyObj = reactive<any>({
+  name:""
+})
+
+const init = () => {
+  setTimeout(() => {
+    emptyObj.name="bingbing"
+  },1500)
+}
+
+onMounted(() => {
+  init()
+})
 
 provide('location', {
   location,
-  updateLocation
+  updateLocation,
+  emptyObj: emptyObj
 })
 </script>
 

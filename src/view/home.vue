@@ -14,6 +14,8 @@ const searchText = ref("默认字段")
 const msgRef = ref<any>(null)
 const router = useRouter()
 
+const text = ref("")
+
 
 
 watch(searchText,(newVal) => {
@@ -24,7 +26,9 @@ watch(searchText,(newVal) => {
 })
 
 onMounted(() => {
-  console.log("挂载成功")
+  setTimeout(() => {
+    text.value="我更新了"
+  },1500)
 })
 
 watchEffect(() => {
@@ -50,7 +54,7 @@ function goAbout(){
 
 <template>
   <div class="content">
-    <CustomInput v-model:title="searchText"/>
+    <CustomInput v-model:title="searchText" :text="text"/>
     <p ref="msgRef">输入框：{{searchText}}</p>
     <div>pinia:{{countStore.count}}</div>
     <button @click="increment">改变</button>

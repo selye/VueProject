@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import {useRoute, useRouter, onBeforeRouteLeave} from "vue-router";
-
-const route = useRoute();
-const router = useRouter();
-
-router.beforeEach((to,from) => {
-  console.log('hah')
-  console.log("to",to)
-  console.log("from",from)
-
-  // return false
+import {debounceFn, throttle} from "../util/util.ts";
+const shopping = debounceFn((goods: string) => {
+  console.log("我要买东西", goods)
+})
+const sale = throttle((goods: string) => {
+  console.log('我要卖东西', goods)
 })
 
-console.log("route", route)
-console.log("router", router)
 
 
 </script>
 
 <template>
-  <div>about</div>
+  <button @click="shopping('book')">debounce</button>
+  <button @click="sale('book')">throttle</button>
   <router-link to="/">Home</router-link>
 </template>
 
