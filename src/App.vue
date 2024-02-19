@@ -79,6 +79,6 @@ provide('location', {
 }
 .layout{
   width: 100%;
-  display: flex;
+  //display: flex;
 }
 </style>

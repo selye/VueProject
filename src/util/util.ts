@@ -10,7 +10,6 @@ const debounceFn = (fn: Function, delay: number = 1500, ) => {
             clearTimeout(timer)
         }
         timer = setTimeout(function(){
-            console.log(context)
             fn.call(context,...args)
         },delay)
     }
@@ -150,13 +149,195 @@ function calmSum(arr){
     return arr.reduce((pre, cur) => pre + cur,0)
 }
 
-const testArray = [[1, 2, 3], [4, 5, 6], [-1, 12, 13], [6, 18, 0], [5, 5, 5], [6, 9, 3]]
-const result = findMaxSubArr(testArray)
-console.log("check", result)
+// const testArray = [[1, 2, 3], [4, 5, 6], [-1, 12, 13], [6, 18, 0], [5, 5, 5], [6, 9, 3]]
+// const result = findMaxSubArr(testArray)
+// console.log("check", result)
+
+/**
+ * 树结构转换
+ *
+ * */
+
+let arr = [{
+    id: 1,
+    pid: 0,
+    name: 'body'
+}, {
+    id: 2,
+    pid: 1,
+    name: 'title'
+}, {
+    id: 3,
+    pid: 2,
+    name: 'div'
+}]
+
+function toTree(data){
+    let result = [];
+    let map = {}
+    data.forEach((item) => {
+        map[item.id] = item
+    })
+    data.forEach((item) => {
+        let parent = map[item.pid];
+        if(parent){
+            (parent.children || (parent.children = [])).push(item)
+        }else{
+            result.push(item)
+        }
+    })
+    return result
+}
+
+
+/**
+ * 树转数组
+ *
+ * */
+
+const tree = [
+    {
+        id:1,
+        name:'body',
+        pId:0,
+        children: [
+            {
+                id:2,
+                name:'title',
+                pId:1,
+                children: [
+                    {
+                        id:3,
+                        name:'div',
+                        pId:2,
+                    }
+                ]
+            }
+        ]
+    }
+]
+
+/**
+ * 树状转数组
+ * 递归调用
+ * */
+
+function toArray(data){
+    const result = [];
+    function flatten(node){
+        console.log('node', node)
+        result.push(node)
+        if(node.children && node.children.length > 0){
+            node.children.forEach(child => flatten(child))
+        }
+    }
+    data.forEach(node => flatten(node))
+    return result
+}
+
+
+/**
+ * 递归
+ * */
+
+/**
+ * 多维数组拉平
+ * @param {[type]} sourceArr:
+ * input: [
+ *   ['戴尔', '苹果', '联想'],
+ *   ['笔记本', '平板电脑', 'PC机', '上网本'],
+ *   ['黑色', '银色', '白色'],
+ * ]
+ *
+ * @output {[type]} targetArr: ['戴尔-笔记本-黑色', '戴尔-笔记本-银色', '戴尔-笔记本-白色', '戴尔-平板电脑-黑色', '戴尔-平板电脑-银色', ...];
+ */
+
+const sourceArr = [
+    ['戴尔', '苹果', '联想'],
+    ['笔记本', '平板电脑', 'PC机', '上网本'],
+    ['黑色', '银色', '白色'],
+]
+
+function flatduceArray(data: string[][]){
+   const res = data.reduce((prev :string[],cur  :string[]) => {
+       const arr = [];
+       prev.forEach((sub1) => {
+           cur.forEach((sub2) => {
+               arr.push(`${sub1}-${sub2}`)
+           })
+       })
+       return arr
+   })
+
+    return res
+}
+//
+const flatResult = flatduceArray(sourceArr)
+console.log(flatResult)
+
+/**
+ * 有序数组合并
+ *
+ * @param {Array} arr1 有序数组1
+ * @param {Array} arr2 有序数组2
+ * @param {Array}
+ */
+
+
+function merge(arr2) {
+let len = arr2.length
+
+for(let i = 0; i< len - 1 ; i++){
+    for(let j = 0; j < len - 1 - i; j++){
+        if(arr2[j] > arr2[j + 1]){
+            let temp = arr2[j];
+            arr2[j] = arr2[j+1]
+            arr2[j+1] = temp
+        }
+    }
+}
+
+    return arr2;
+}
+
+// const arr1 = [1,3,5];
+// const arr2 = [2,4,6,1,3,5];
+// const checkResult =  merge(arr2)
+// console.log("check", checkResult)
 
 
 
 
+/**
+ * 冒泡排序
+ *
+ * [3,2,1,4]
+ *
+ *
+ * */
 
 
-export { debounceFn, throttle, currey, sum, chatArry }
+
+function bubbleSort(arr: number[]): number[]{
+    const len = arr.length;
+
+    for(let i = 0; i < len; i++){
+        for(let j = 0; j < len - 1 - i; j++){
+            if(arr[j] > arr[j+1]){
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp
+            }
+        }
+    }
+    return arr
+}
+
+// const testArr = [3,2,4,1]
+// const result =  bubbleSort(testArr)
+// console.log(result)
+
+
+
+
+export { debounceFn, throttle, currey, sum, chatArry, toTree, toArray, flatduceArray, bubbleSort }
