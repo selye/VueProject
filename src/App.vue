@@ -34,11 +34,11 @@ provide('location', {
 
 <template>
   <div class="layout">
-    <router-view class="view left-slider" name="LeftSlider"></router-view>
+<!--    <router-view class="view left-slider" name="LeftSlider"></router-view>-->
     <router-view class="view content" v-slot="{ Component }">
       <component :is="Component"/>
     </router-view>
-    <router-view class="view right-slider" name="RightSlider"></router-view>
+<!--    <router-view class="view right-slider" name="RightSlider"></router-view>-->
   </div>
 </template>
 
@@ -79,6 +79,6 @@ provide('location', {
 }
 .layout{
   width: 100%;
-  //display: flex;
+  display: flex;
 }
 </style>

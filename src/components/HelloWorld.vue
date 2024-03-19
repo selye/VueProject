@@ -9,6 +9,7 @@ defineProps<{ msg: string }>()
  */
 
 
+
  const colorArray = ['#f6746d', '#fce3e2', '#f68000', '#fce7cc', '#f9c500', '#f8edc0', '#93ad00', '#e3f09f', '#4ebd44', '#d3f5cd', '#4cbeab', '#c9f2ec', '#47b1e9', '#ceeffd', '#81a3ff', '#e1e9ff', '#e477b9', '#fce2f2', '#b591fd', '#eee6ff', '#90959e', '#eff0f1', '#fce3e2', '#f6746d', '#fce7cc', '#f68000', '#f8edc0', '#f9c500', '#e3f09f', '#93ad00', '#d3f5cd', '#4ebd44', '#c9f2ec',
  '#4cbeab', '#ceeffd', '#47b1e9', '#e1e9ff', '#81a3ff', '#fce2f2', '#e477b9',
  '#eee6ff', '#b591fd', '#eff0f1', '#90959e', '#f8c6c3', '#cf372b', '#f9c387',

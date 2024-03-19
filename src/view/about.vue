@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {debounceFn, throttle} from "../util/util.ts";
 
+
 const shopping = debounceFn((goods: string) => {
   console.log("我要买东西", goods)
 })
@@ -8,10 +9,14 @@ const sale = throttle((goods: string) => {
   console.log('我要卖东西', goods)
 })
 
-import {ref, watch} from "vue";
+import {nextTick, ref, watch} from "vue";
 
 const tabValue = ref<string[]>([])
 const showValue = ref("")
+
+const person = ref({
+  name:"shijie"
+})
 
 const getValue =(inputValue: string,ev: KeyboardEvent) => {
   const newValue = inputValue.split(" ")
@@ -27,14 +32,10 @@ const changeValue = (inputValue: string,ev: KeyboardEvent) => {
   console.log(inputValue,ev)
 }
 
-watch(tabValue,() => {
-  console.log(tabValue.value)
-},{
-  deep:true,
-  immediate: true
-})
 
-
+const addProperty = () => {
+  person.value.age = 20
+}
 
 
 </script>
@@ -43,14 +44,9 @@ watch(tabValue,() => {
 <!--  <button @click="shopping('book')">debounce</button>-->
 <!--  <button @click="sale('book')">throttle</button>-->
   <div class="about-container">
-    <jw-inputTag  :style="{width:'320px'}"
-                  @input-value-change="changeValue"
-                  @press-enter="getValue"
-                  v-model:input-value="showValue"
-                  v-model:model-value="tabValue">
-    </jw-inputTag>
     <router-link to="/">Home</router-link>
-
+    <p v-for="(item,index) in person" :key="index">{{item}}</p>
+    <button @click="addProperty">添加属性</button>
   </div>
 </template>
 

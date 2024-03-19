@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    const testArray = [
+        {
+            name:"乔峰",
+            skill:"祥龙张"
+        },
+        {
+            name:"段誉",
+            skill:"六脉神剑"
+        },
+        {
+            name:"虚竹",
+            skill:"北冥神功"
+        }
+    ]
+
+
+    function getResult(){
+        const list = [...testArray];
+        const newPerson = [
+            {
+                name:"杨过",
+                skill:"黯然销魂掌"
+            },
+            {
+                name:"郭靖",
+                skill:"九阳神功"
+            }
+        ]
+
+        list.splice(1,0,newPerson[0])
+        list.splice(2,0,newPerson[1])
+        console.log(list)
+        return list
+    }
+
+    getResult();
+
+</script>
+</body>
+</html>

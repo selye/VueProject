@@ -6,6 +6,8 @@ import App from './App.vue'
 import Blog from "./components/Blog.vue"
 import router from "../src/router"
 import store from "../store"
+import './tailwind.css'
+
 
 const app = createApp(App)
 

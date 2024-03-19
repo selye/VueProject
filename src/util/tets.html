@@ -36,7 +36,45 @@
         document.getElementById('myList').innerHTML = newHtml
         // 在此补全代码
     }
-    sortAndReturnTextContent()
+    // sortAndReturnTextContent()
+
+    const obj = new Map([
+        [2, 'LP池'],
+        [3, 'LP跟进信息'],
+        [8, 'LP出资信息'],
+        [10, '实缴信息'],
+        [4, '基金']
+    ]);
+
+    // const keys = Array.from(obj.keys()); // 保持原始顺序的键数组
+    // console.log(keys)
+
+    // 数组去重
+    const testArr = [1,1,2,3,2,2,4,5,5,6,7,6,7,8]
+    function ArrayReduce(arr){
+        const result = [];
+        for(let i = 0; i < arr.length; i++) {
+            if (!result.includes(arr[i])) {
+                result.push(arr[i])
+            }
+        }
+        return result
+    }
+    const s = ArrayReduce(testArr)
+    console.log(s)
+
+    //找出数组最大值
+    function getMaxVal(arr){
+        let result;
+        for(let i = 0; i< arr.length; i++){
+            for(let j = 1; j < arr.length; j++){
+
+            }
+        }
+    }
+
+
+
 </script>
 
 
