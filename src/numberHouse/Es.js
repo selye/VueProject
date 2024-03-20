@@ -188,4 +188,47 @@ var romanToInt = function(s) {
     return result
 };
 
-console.log(romanToInt('III'));
+// console.log(romanToInt('III'));
+
+
+/**
+ * @params {array} list
+ * @return {number}
+ * */
+
+var getMiddleIndex = (nums) => {
+    // 得到总和
+    const sum = nums.reduce((pre, cur) => {
+        return pre+cur;
+    })
+    console.log('sum', sum);
+    let leftNumber = 0;
+    for(let i = 0; i < nums.length; i++){
+        const rightNumber = sum - leftNumber - nums[i];
+        if(leftNumber === rightNumber){
+            return i
+        }else{
+            leftNumber += nums[i]
+        }
+
+    }
+    return -1
+}
+// console.log(getMiddleIndex([1,7,3,6,5,6]));
+
+/**
+ * searchInput
+ * @params {array} list
+ * @params {number} x
+ * @return {array} list
+ * */
+
+var searchInsert = function(nums, target) {
+    for(let i =0; i< nums.length; i++){
+        if(nums[i] >= target){
+            return i
+        }
+    }
+    return nums.length
+    
+};
