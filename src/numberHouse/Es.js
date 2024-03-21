@@ -230,5 +230,27 @@ var searchInsert = function(nums, target) {
         }
     }
     return nums.length
-    
 };
+
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ * 合并区间
+ */
+var merge = function(intervals) {
+    intervals.sort((a,b) => a[0] - b[0]);
+    console.log('in', intervals);
+    return intervals.reduce((pre, cur, index) => {
+        const peek = pre[pre.length - 1]; // 前一项数组的最后一项
+        if(peek && peek[1] >= cur[0]){
+            let left = peek[0];
+            let right = peek[1] > cur[1] ? peek[1] : cur[1];
+            pre[pre.length - 1] = [left,right]
+        }else{
+            pre.push(cur)
+        }
+        return pre
+    },[])
+};
+
+console.log(merge([[1,3],[2,6],[8,10],[15,18]]));
